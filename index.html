@@ -50,9 +50,9 @@
               Structure-from-Motion for Large-Scale Camera Array Calibration</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="#">Jinjiang You</a><sup>*,1</sup>,</span>
+                <a href="#">Jinjiang You</a><sup>1*</sup>,</span>
               <span class="author-block">
-                <a href="#">Hewei "Stephen" Wang</a><sup>*,1</sup>,</span>
+                <a href="#">Hewei "Stephen" Wang</a><sup>1*</sup>,</span>
               <span class="author-block">
                 <a href="#">Yijie Li</a><sup>1</sup>,
               </span>
@@ -80,11 +80,11 @@
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>CMU</span>;
-              <span class="author-block"><sup>2</sup>Harvard</span>;
-              <span class="author-block"><sup>3</sup>HKU</span>;
-              <span class="author-block"><sup>4</sup>Cornell</span>;
-              <span class="author-block"><sup>5</sup>Meta Reality Labs</span>;
+              <span class="author-block"><sup>1</sup>CMU</span>,
+              <span class="author-block"><sup>2</sup>Harvard</span>,
+              <span class="author-block"><sup>3</sup>HKU</span>,
+              <span class="author-block"><sup>4</sup>Cornell</span>,
+              <span class="author-block"><sup>5</sup>Meta Reality Labs</span>,
               <span class="author-block"><sup>*</sup>Equal Contributions</span>
             </div>
             <div class="is-size-4 publication-authors" ,="" style="margin-bottom: 0.5cm;">
@@ -133,9 +133,10 @@
       <div class="hero-body">
         <img src="./static/images/architecture.png" alt="Multi-Cali Anything Architecture"
           style="width: 100%; max-width: 800px; display: block; margin: 0 auto;">
-        <h2 class="subtitle has-text-centered">
-          <!-- <span class="dnerf">Multi-Cali Anything</span> is a dense-feature-driven multi-frame camera calibration method
-          designed for large-scale camera arrays. -->
+        <h2 class="content has-text-centered">
+          The overall pipeline of our proposed method. Inputs include multi-frame, multi-view
+          images, and camera extrinsics, with outputs being camera intrinsics and SfM sparse reconstructions. (a) to
+          (d) illustrate several key components.
         </h2>
       </div>
     </div>
@@ -159,7 +160,7 @@
     </div>
   </section>
 
-  <section class="section" id="abstract">
+  <section class="hero is-light is-small" id="abstract">
     <div class="container is-max-desktop">
       <!-- Abstract. -->
       <div class="columns is-centered has-text-centered">
@@ -167,26 +168,25 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Multi-Cali Anything is a dense-feature-driven multi-frame camera calibration method designed for
-              large-scale camera arrays. Unlike traditional calibration methods that require dedicated
-              checkerboard
-              captures, our approach directly refines camera intrinsics from scene data, eliminating the
-              necessity for
-              additional calibration captures.
-              Our method functions as an add-on to existing SfM pipelines (e.g., COLMAP, Pixel-Perfect SfM),
-              using
-              sparse reconstruction results and refining the models through dense feature refinement. This
-              approach
-              reduces keypoint errors for higher calibration accuracy and ensures consistent intrinsics across
-              multiple
-              frames.
-              We demonstrate that Multi-Cali Anything achieves nearly the same
-              precision as
-              dedicated calibration processes while being suitable for large-scale camera arrays with multiple
-              frame
-              captures. The method is efficient and seamlessly integrates with existing workflows, making it an
-              ideal
-              solution for scenarios where traditional calibration is impractical or impossible.
+              Calibrating large-scale camera arrays, such as those used in dome-based setups, is time-intensive and
+              often relies on dedicated checkerboard captures. While extrinsic parameters are typically fixed due to the
+              physical structure, intrinsic parameters can vary across sessions because of lens adjustments or
+              environmental factors like temperature. We introduce <b>Multi-Cali Anything</b>, a dense-feature-driven,
+              multi-frame calibration method tailored for large-scale camera arrays. Unlike traditional methods, our
+              approach refines intrinsics directly from scene data—eliminating the need for additional calibration
+              captures. Built as a plug-and-play add-on to existing Structure-from-Motion (<b>SfM</b>) pipelines (e.g.,
+              <b>COLMAP</b>,
+              <b>Pixel-Perfect SfM</b>), Multi-Cali Anything utilizes sparse reconstruction results and enhances them
+              through
+              dense feature refinement. Our method incorporates: (1) an extrinsics regularization term to progressively
+              align estimated extrinsics with ground-truth values, (2) a dense feature reprojection loss to reduce
+              keypoint errors in the feature space, and (3) an intrinsics variance term to ensure consistency across
+              multiple frames. Experiments on the <b>Multiface</b> dataset demonstrate that our method achieves
+              calibration
+              precision comparable to dedicated calibration procedures, while significantly improving intrinsic
+              parameter estimates and 3D reconstruction accuracy. Efficient, scalable, and fully compatible with
+              existing SfM workflows, Multi-Cali Anything offers a practical solution for challenging calibration
+              scenarios where traditional methods are impractical or infeasible.<br><br><br>
           </div>
         </div>
       </div>
@@ -198,7 +198,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h2 class="title is-3">Why Use Multi-Cali Anything?</h2>
+          <h2 class="title is-3 has-text-centered">Why Multi-Cali Anything?</h2>
 
           <div class="columns is-centered">
             <div class="column">
@@ -226,11 +226,10 @@
             <div class="column">
               <div class="content">
                 <h3 class="title is-4">How It Works</h3>
-                <ol>
-                  <li><strong>1️⃣ Run any SfM pipeline</strong> (COLMAP, Pixel-Perfect SfM, etc.) to obtain initial
-                    sparse reconstructions (camera parameters + sparse 3D models).</li>
-                  <li><strong>2️⃣ Use Multi-Cali Anything</strong> to get refined camera intrinsics and 3D models.</li>
-                </ol>
+                <p> First, users run <strong>any SfM pipeline</strong>, such as COLMAP or Pixel-Perfect SfM, to generate
+                  initial sparse reconstructions, including camera parameters and sparse 3D models. Then, they apply
+                  <strong>Multi-Cali Anything</strong> to refine the intrinsics and generate improved 3D reconstructions
+                  using dense feature optimization.
               </div>
             </div>
           </div>
@@ -243,7 +242,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column is-full-width">
-          <h2 class="title is-3">Results Gallery</h2>
+          <h2 class="title is-3 has-text-centered">Results Gallery</h2>
 
           <!-- Reprojection Errors -->
           <div class="columns is-centered">
@@ -251,7 +250,15 @@
               <div class="content">
                 <h3 class="title is-4">Reprojection Errors</h3>
                 <p>
-                  Visualization of reprojection errors, using intrinsics produced by different methods.
+                  Visualization of reprojection errors using intrinsics estimated by different methods:
+                  <strong>COLMAP</strong> (1<sup>st</sup> row), <strong>Pixel-Perfect SfM</strong> (2<sup>nd</sup> row),
+                  <strong>VGGSfM</strong> (3<sup>rd</sup> row), and <strong>our method</strong> (4<sup>th</sup> row).
+                  A few 3D points from the ground-truth mesh are projected onto images using both ground-truth
+                  intrinsics
+                  (<strong><span style="color: rgb(255, 0, 0) !important;">red crossings</span></strong>) and estimated
+                  intrinsics
+                  (<strong><span style="color: rgb(1, 169, 0) !important;">green dots</span></strong>).
+                  Our method produces the smallest reprojection error, demonstrating superior calibration accuracy.
                 </p>
                 <img src="./static/images/Reprojection.png" alt="Reprojection Errors Comparison" style="width: 100%;">
               </div>
@@ -264,9 +271,20 @@
               <div class="content">
                 <h3 class="title is-4">Multi-View Stereo Reconstructions</h3>
                 <p>
-                  Reconstructions by multi-view stereo, using intrinsics produced by different methods. The
-                  reconstructions are compared against the ground-truth models, with blue indicating positive distances,
-                  red indicating negative distances, green indicating near-zero deviation.
+                  Comparative visualization of multi-view stereo (MVS) reconstruction using the COLMAP MVS pipeline with
+                  intrinsics
+                  from <strong>COLMAP</strong>, <strong>Pixel-Perfect SfM</strong>, <strong>VGGSfM</strong>, and
+                  <strong>our method</strong>. Point-to-ground-truth mesh distances are computed and color-encoded:
+                  <strong><span style="font-size: 1.5rem; color: red; text-align: center;">red</span></strong> for
+                  negative deviation,
+                  <strong><span style="font-size: 1.5rem; color: blue; text-align: center;">blue</span></strong> for
+                  positive deviation,
+                  and
+                  <strong><span style="color: rgb(1, 169, 0) !important;">green</span></strong>
+                  for
+                  near-zero error.
+                  Our method shows more green points and tighter error distributions in histograms,
+                  indicating better alignment with the ground-truth and superior intrinsic calibration.
                 </p>
                 <img src="./static/images/MVS.png" alt="Multi-View Stereo Results" style="width: 100%;">
               </div>
@@ -279,7 +297,12 @@
               <div class="content">
                 <h3 class="title is-4">DUSt3R Reconstructions</h3>
                 <p>
-                  Reconstructions by DUSt3R, using intrinsics produced by different methods.
+                  Comparative DUSt3R reconstruction results using ground-truth extrinsics.
+                  All models are aligned and scaled to the same pose for visualization.
+                  Reconstructions with <strong>DUSt3R’s intrinsics</strong> show significant noise,
+                  depth inconsistencies, and scale mismatch. In contrast, reconstructions using
+                  <strong>our refined intrinsics</strong> yield more accurate geometry and consistent scale,
+                  demonstrating improved reconstruction quality for both heads.
                 </p>
                 <img src="./static/images/DUSt3R.png" alt="DUSt3R Reconstruction Results" style="width: 100%;">
               </div>
@@ -293,12 +316,13 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@article{you2025multicalianything,
-  title = {Multi-Cali Anything: Dense Feature Multi-Frame Structure-from-Motion for Large-Scale Camera Array Calibration},
-  author={Jinjiang You and Hewei Wang and Yijie Li and Mingxiao Huo and Long Van Tran Ha and Mingyuan Ma and Jinfeng Xu and Puzhen Wu and Shubham Garg and Wei Pu},
-  journal={arXiv preprint arXiv:2503.00737},
-  year={2025}
-}</code></pre>
+      <pre><code>@article{you2025multi,
+    title={Multi-Cali Anything: Dense Feature Multi-Frame Structure-from-Motion for Large-Scale Camera Array Calibration},
+    author={You, Jinjiang and Wang, Hewei and Li, Yijie and Huo, Mingxiao and Ha, Long Van Tran and Ma, Mingyuan and Xu, Jinfeng and Wu, Puzhen and Garg, Shubham and Pu, Wei},
+    journal={arXiv preprint arXiv:2503.00737},
+    year={2025}
+}
+      </code></pre>
     </div>
   </section>
 
