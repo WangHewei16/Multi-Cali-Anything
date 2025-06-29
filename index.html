@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Multi-Cali Anything is a dense-feature-driven multi-frame camera calibration method designed for large-scale camera arrays.">
+  <meta name="keywords" content="Multi-Cali Anything, Camera Calibration, SfM, COLMAP, Multi-view Stereo">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multi-Cali Anything: Dense Feature Multi-Frame Structure-from-Motion</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Multi-Cali Anything: Dense Feature Multi-Frame
+              Structure-from-Motion for Large-Scale Camera Array Calibration</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="#">Jinjiang You</a><sup>*,1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Hewei "Stephen" Wang</a><sup>*,1</sup>,</span>
+              <span class="author-block">
+                <a href="#">Yijie Li</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Mingxiao Huo</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Long Vân Tran Ha</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Mingyuan Ma</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Jinfeng Xu</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Puzhen Wu</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Shubham Garg</a><sup>5</sup>,
+              </span>
+              <span class="author-block">
+                <a href="#">Wei Pu</a><sup>5</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>CMU</span>;
+              <span class="author-block"><sup>2</sup>Harvard</span>;
+              <span class="author-block"><sup>3</sup>HKU</span>;
+              <span class="author-block"><sup>4</sup>Cornell</span>;
+              <span class="author-block"><sup>5</sup>Meta Reality Labs</span>;
+              <span class="author-block"><sup>*</sup>Equal Contributions</span>
+            </div>
+            <div class="is-size-4 publication-authors" ,="" style="margin-bottom: 0.5cm;">
+              IROS 2025
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2503.00737" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2503.00737" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/YJJfish/Multi-Cali-Anything"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <img src="./static/images/architecture.png" alt="Multi-Cali Anything Architecture"
+          style="width: 100%; max-width: 800px; display: block; margin: 0 auto;">
+        <h2 class="subtitle has-text-centered">
+          <!-- <span class="dnerf">Multi-Cali Anything</span> is a dense-feature-driven multi-frame camera calibration method
+          designed for large-scale camera arrays. -->
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-reprojection">
+            <img src="./static/images/Reprojection.png" alt="Reprojection Errors Comparison" style="width: 100%;">
+          </div>
+          <div class="item item-mvs">
+            <img src="./static/images/MVS.png" alt="Multi-View Stereo Results" style="width: 100%;">
+          </div>
+          <div class="item item-dust3r">
+            <img src="./static/images/DUSt3R.png" alt="DUSt3R Reconstruction Results" style="width: 100%;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Multi-Cali Anything is a dense-feature-driven multi-frame camera calibration method designed for
+              large-scale camera arrays. Unlike traditional calibration methods that require dedicated
+              checkerboard
+              captures, our approach directly refines camera intrinsics from scene data, eliminating the
+              necessity for
+              additional calibration captures.
+              Our method functions as an add-on to existing SfM pipelines (e.g., COLMAP, Pixel-Perfect SfM),
+              using
+              sparse reconstruction results and refining the models through dense feature refinement. This
+              approach
+              reduces keypoint errors for higher calibration accuracy and ensures consistent intrinsics across
+              multiple
+              frames.
+              We demonstrate that Multi-Cali Anything achieves nearly the same
+              precision as
+              dedicated calibration processes while being suitable for large-scale camera arrays with multiple
+              frame
+              captures. The method is efficient and seamlessly integrates with existing workflows, making it an
+              ideal
+              solution for scenarios where traditional calibration is impractical or impossible.
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+  <section class="section" id="method">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Why Use Multi-Cali Anything?</h2>
+
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h3 class="title is-4">Key Advantages</h3>
+                <ul>
+                  <li><strong>✅ No extra calibration captures needed</strong> – Uses scene data instead of calibration
+                    patterns.</li>
+                  <li><strong>✅ Seamless integration</strong> – Works as an add-on to existing SfM pipelines (e.g.,
+                    COLMAP, Pixel-Perfect SfM).</li>
+                  <li><strong>✅ Dense feature refinement</strong> – Reduces keypoint errors for higher calibration
+                    accuracy.</li>
+                  <li><strong>✅ Multi-frame optimization</strong> – Ensures consistent intrinsics across multiple
+                    frames.</li>
+                  <li><strong>✅ Efficient processing</strong> - Suitable for large-scale camera arrays with multiple
+                    frame captures.</li>
+                  <li><strong>✅ High accuracy</strong> - Achieves nearly the same precision as dedicated calibration
+                    processes.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h3 class="title is-4">How It Works</h3>
+                <ol>
+                  <li><strong>1️⃣ Run any SfM pipeline</strong> (COLMAP, Pixel-Perfect SfM, etc.) to obtain initial
+                    sparse reconstructions (camera parameters + sparse 3D models).</li>
+                  <li><strong>2️⃣ Use Multi-Cali Anything</strong> to get refined camera intrinsics and 3D models.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Results Gallery</h2>
+
+          <!-- Reprojection Errors -->
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h3 class="title is-4">Reprojection Errors</h3>
+                <p>
+                  Visualization of reprojection errors, using intrinsics produced by different methods.
+                </p>
+                <img src="./static/images/Reprojection.png" alt="Reprojection Errors Comparison" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+
+          <!-- Multi-View Stereo -->
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h3 class="title is-4">Multi-View Stereo Reconstructions</h3>
+                <p>
+                  Reconstructions by multi-view stereo, using intrinsics produced by different methods. The
+                  reconstructions are compared against the ground-truth models, with blue indicating positive distances,
+                  red indicating negative distances, green indicating near-zero deviation.
+                </p>
+                <img src="./static/images/MVS.png" alt="Multi-View Stereo Results" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+
+          <!-- DUSt3R -->
+          <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <h3 class="title is-4">DUSt3R Reconstructions</h3>
+                <p>
+                  Reconstructions by DUSt3R, using intrinsics produced by different methods.
+                </p>
+                <img src="./static/images/DUSt3R.png" alt="DUSt3R Reconstruction Results" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{you2025multicalianything,
+  title = {Multi-Cali Anything: Dense Feature Multi-Frame Structure-from-Motion for Large-Scale Camera Array Calibration},
+  author={Jinjiang You and Hewei Wang and Yijie Li and Mingxiao Huo and Long Van Tran Ha and Mingyuan Ma and Jinfeng Xu and Puzhen Wu and Shubham Garg and Wei Pu},
+  journal={arXiv preprint arXiv:2503.00737},
+  year={2025}
+}</code></pre>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://arxiv.org/pdf/2503.00737">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/YJJfish/Multi-Cali-Anything" class="external-link">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
