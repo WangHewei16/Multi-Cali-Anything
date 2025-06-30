@@ -171,18 +171,14 @@
               Calibrating large-scale camera arrays, such as those used in dome-based setups, is time-intensive and
               often relies on dedicated checkerboard captures. While extrinsic parameters are typically fixed due to the
               physical structure, intrinsic parameters can vary across sessions because of lens adjustments or
-              environmental factors like temperature.
-              <br/>
-              We introduce <b>Multi-Cali Anything</b>, a dense-feature-driven,
+              environmental factors like temperature. We introduce <b>Multi-Cali Anything</b>, a dense-feature-driven,
               multi-frame calibration method tailored for large-scale camera arrays. Unlike traditional methods, our
               approach refines intrinsics directly from scene data—eliminating the need for additional calibration
               captures. Built as a plug-and-play add-on to existing Structure-from-Motion (<b>SfM</b>) pipelines (e.g.,
               <b>COLMAP</b>,
               <b>Pixel-Perfect SfM</b>), Multi-Cali Anything utilizes sparse reconstruction results and enhances them
               through
-              dense feature refinement.
-              <br/>
-              Our method incorporates: (1) an extrinsics regularization term to progressively
+              dense feature refinement. Our method incorporates: (1) an extrinsics regularization term to progressively
               align estimated extrinsics with ground-truth values, (2) a dense feature reprojection loss to reduce
               keypoint errors in the feature space, and (3) an intrinsics variance term to ensure consistency across
               multiple frames. Experiments on the <b>Multiface</b> dataset demonstrate that our method achieves
