@@ -32,6 +32,14 @@
     }
     .arrow { margin-left:4px; font-size:10px; color:#bbb; }
     .arrow.active { color:#000; }   /* 当前排序列 */
+
+    /* Added styles for column borders */
+    th, td {
+        border-right: 1px solid #ddd;
+    }
+    th:last-child, td:last-child {
+        border-right: none;
+    }
   </style>
 </head>
 <body>
@@ -188,7 +196,7 @@
             const normRank = n > 1 ? index / (n - 1) : 0;
             const alpha = 1.0 - 0.8 * normRank;
             pair.cell.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(2)})`;
-            pair.cell.style.borderRadius = "6px";
+            /* Removed border-radius from here */
         });
     }
   }
