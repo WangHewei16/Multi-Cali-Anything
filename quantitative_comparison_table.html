@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Quantitative Comparison</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      padding: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    thead th {
+      background-color: #fafafa;
+      border-bottom: 2px solid #ccc;
+      padding: 10px;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 10px;
+      font-size: 14px;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #fcfcfc;
+    }
+    tbody tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+    .arrow { margin-left:4px; font-size:10px; color:#bbb; }
+    .arrow.active { color:#000; }   /* 当前排序列 */
+  </style>
+</head>
+<body>
+
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2">Method</th>
+      <th colspan="6">Focal Length Error</th>
+      <th colspan="6">Principal Point Error</th>
+    </tr>
+    <tr>
+      <th data-index="0" style="cursor: pointer;">focal<sub>abs,mean</sub></th>
+      <th data-index="1" style="cursor: pointer;">focal<sub>abs,max</sub></th>
+      <th data-index="2" style="cursor: pointer;">focal<sub>abs,min</sub></th>
+      <th data-index="3" style="cursor: pointer;">focal<sub>rel,mean</sub>‰</th>
+      <th data-index="4" style="cursor: pointer;">focal<sub>rel,max</sub>‰</th>
+      <th data-index="5" style="cursor: pointer;">focal<sub>rel,min</sub>‰</th>
+      <th data-index="6" style="cursor: pointer;">pp<sub>abs,mean</sub></th>
+      <th data-index="7" style="cursor: pointer;">pp<sub>abs,max</sub></th>
+      <th data-index="8" style="cursor: pointer;">pp<sub>abs,min</sub></th>
+      <th data-index="9" style="cursor: pointer;">pp<sub>rel,mean</sub>‰</th>
+      <th data-index="10" style="cursor: pointer;">pp<sub>rel,max</sub>‰</th>
+      <th data-index="11" style="cursor: pointer;">pp<sub>rel,min</sub>‰</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>COLMAP (SIFT+NN)</td>
+      <td>240.107</td><td>370.769</td><td>197.697</td><td>31.610</td><td>48.867</td><td>26.095</td>
+      <td>66.786</td><td>112.163</td><td>47.742</td><td>42.415</td><td>72.848</td><td>29.834</td>
+    </tr>
+    <tr>
+      <td>COLMAP (SIFT+NN)*</td>
+      <td>117.781</td><td>122.004</td><td>112.627</td><td>15.574</td><td>16.136</td><td>14.897</td>
+      <td>1.594</td><td>1.682</td><td>1.455</td><td>0.955</td><td>1.010</td><td>0.873</td>
+    </tr>
+    <tr>
+      <td>Pixel-Perfect (Disk+NN)</td>
+      <td>313.362</td><td>359.700</td><td>268.225</td><td>41.203</td><td>47.331</td><td>35.277</td>
+      <td>66.886</td><td>76.557</td><td>58.248</td><td>42.040</td><td>49.425</td><td>36.684</td>
+    </tr>
+    <tr>
+      <td>Pixel-Perfect (Disk+NN)*</td>
+      <td>179.227</td><td>183.157</td><td>176.467</td><td>23.683</td><td>24.205</td><td>23.320</td>
+      <td>5.264</td><td>5.447</td><td>5.078</td><td>2.909</td><td>3.001</td><td>2.798</td>
+    </tr>
+    <tr>
+      <td>Pixel-Perfect (R2D2+NN)</td>
+      <td>126.477</td><td>211.908</td><td>64.953</td><td>16.540</td><td>27.800</td><td>8.501</td>
+      <td>61.212</td><td>96.716</td><td>42.744</td><td>39.093</td><td>63.352</td><td>26.318</td>
+    </tr>
+    <tr>
+      <td>Pixel-Perfect (R2D2+NN)*</td>
+      <td>91.132</td><td>103.760</td><td>83.591</td><td>12.052</td><td>13.727</td><td>11.054</td>
+      <td>2.950</td><td>3.358</td><td>2.603</td><td>1.860</td><td>2.043</td><td>1.647</td>
+    </tr>
+    <tr>
+      <td>Pixel-Perfect (SuperPoint+NN)</td>
+      <td>406.536</td><td>728.230</td><td>138.871</td><td>53.937</td><td>97.041</td><td>18.185</td>
+      <td>220.455</td><td>469.903</td><td>107.160</td><td>137.272</td><td>279.020</td><td>66.045</td>
+    </tr>
+    <tr>
+      <td>Pixel-Perfect (SuperPoint+NN)*</td>
+      <td>10.456</td><td>24.965</td><td>4.414</td><td>1.389</td><td>3.313</td><td>0.582</td>
+      <td>2.686</td><td>4.290</td><td>1.883</td><td>1.726</td><td>2.521</td><td>1.257</td>
+    </tr>
+    <tr>
+      <td>Pixel-Perfect (SuperPoint+SuperGlue)</td>
+      <td>490.563</td><td>634.495</td><td>227.274</td><td>65.008</td><td>84.246</td><td>30.119</td>
+      <td>207.518</td><td>300.653</td><td>142.050</td><td>130.619</td><td>190.479</td><td>86.182</td>
+    </tr>
+    <tr>
+      <td>Pixel-Perfect (SuperPoint+SuperGlue)*</td>
+      <td>7.307</td><td>14.157</td><td>3.808</td><td>0.965</td><td>1.873</td><td>0.502</td>
+      <td>2.391</td><td>3.534</td><td>1.384</td><td>1.563</td><td>2.146</td><td>0.986</td>
+    </tr>
+    <tr>
+      <td>DUSt3R (Linear)</td>
+      <td>5854.966</td><td>5982.099</td><td>5570.567</td><td>774.200</td><td>791.681</td><td>739.994</td>
+      <td>163.994</td><td>164.348</td><td>163.778</td><td>104.706</td><td>104.928</td><td>104.567</td>
+    </tr>
+    <tr>
+      <td>DUSt3R (Linear)*</td>
+      <td>5885.447</td><td>6087.489</td><td>5602.540</td><td>776.848</td><td>805.607</td><td>742.758</td>
+      <td>156.384</td><td>157.863</td><td>154.685</td><td>93.320</td><td>94.269</td><td>92.218</td>
+    </tr>
+    <tr>
+      <td>DUSt3R (DPT)</td>
+      <td>9959.293</td><td>10114.131</td><td>9760.731</td><td>1309.893</td><td>1329.840</td><td>1283.910</td>
+      <td>164.321</td><td>164.702</td><td>163.716</td><td>104.895</td><td>105.115</td><td>104.549</td>
+    </tr>
+    <tr>
+      <td>DUSt3R (DPT)*</td>
+      <td>9878.869</td><td>10023.006</td><td>9727.524</td><td>1300.423</td><td>1318.947</td><td>1280.676</td>
+      <td>170.561</td><td>171.531</td><td>169.178</td><td>104.892</td><td>105.471</td><td>104.069</td>
+    </tr>
+    <tr>
+      <td>VGGSfM</td>
+      <td>560.150</td><td>1056.412</td><td>413.168</td><td>73.191</td><td>137.347</td><td>53.895</td>
+      <td>164.713</td><td>164.713</td><td>164.713</td><td>105.052</td><td>105.052</td><td>105.052</td>
+    </tr>
+    <tr>
+      <td>VGGSfM*</td>
+      <td>120.997</td><td>131.599</td><td>111.526</td><td>15.918</td><td>17.316</td><td>14.686</td>
+      <td>6.645</td><td>7.894</td><td>5.964</td><td>4.067</td><td>4.869</td><td>3.666</td>
+    </tr>
+    <tr>
+      <td>Ours (Single frame)</td>
+      <td>6.598</td><td>8.916</td><td>2.950</td><td>0.870</td><td>1.178</td><td>0.396</td>
+      <td>2.227</td><td>2.845</td><td>1.546</td><td>1.483</td><td>1.789</td><td>1.106</td>
+    </tr>
+    <tr>
+      <td>Ours (Multiple frames)</td>
+      <td>5.405</td><td></td><td></td><td>0.712</td><td></td><td></td>
+      <td>1.994</td><td></td><td></td><td>1.335</td><td></td><td></td>
+    </tr>
+  </tbody>
+</table>
+<script>
+  const table = document.querySelector("table");
+  const tbody = table.querySelector("tbody");
+  const headers = Array.from(table.querySelectorAll("thead th[data-index]"));
+  const colColors = [
+    [255, 200, 200], [255, 200, 200], [255, 200, 200], [255, 240, 200], [255, 240, 200], [255, 240, 200],
+    [210, 210, 255], [210, 210, 255], [210, 210, 255], [200, 255, 200], [200, 255, 200], [200, 255, 200]
+  ];
+
+  let sortState = {};
+
+  function applyGradientColors() {
+    const rows = Array.from(tbody.querySelectorAll("tr"));
+    if (rows.length === 0) return;
+    const colCount = rows[0].cells.length - 1; 
+
+    for (let col = 1; col <= colCount; col++) {
+        const cellValuePairs = [];
+        rows.forEach(row => {
+            const cell = row.cells[col];
+            if (cell) {
+                const value = parseFloat(cell.textContent);
+                if (!isNaN(value)) {
+                    cellValuePairs.push({ cell: cell, value: value });
+                }
+            }
+        });
+
+        cellValuePairs.sort((a, b) => a.value - b.value);
+
+        const n = cellValuePairs.length;
+        const [r, g, b] = colColors[col - 1];
+
+        cellValuePairs.forEach((pair, index) => {
+            const normRank = n > 1 ? index / (n - 1) : 0;
+            const alpha = 1.0 - 0.8 * normRank;
+            pair.cell.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${alpha.toFixed(2)})`;
+            pair.cell.style.borderRadius = "6px";
+        });
+    }
+  }
+
+  headers.forEach(th => {
+      const span = document.createElement("span");
+      span.className = "arrow";
+      span.textContent = "▲";
+      th.appendChild(span);
+  });
+
+  applyGradientColors();
+
+  headers.forEach(th => {
+      const col = +th.dataset.index;
+      th.addEventListener("click", () => {
+          sortState[col] = !(sortState[col] === "asc") ? "asc" : "desc";
+          const asc = sortState[col] === "asc";
+
+          const rows = Array.from(tbody.querySelectorAll("tr")).sort((a, b) => {
+              const va_text = a.cells[col + 1] ? a.cells[col + 1].textContent : '';
+              const vb_text = b.cells[col + 1] ? b.cells[col + 1].textContent : '';
+              
+              if (va_text === '' && vb_text === '') return 0;
+              if (va_text === '') return 1;
+              if (vb_text === '') return -1;
+
+              const va = parseFloat(va_text);
+              const vb = parseFloat(vb_text);
+              
+              return asc ? va - vb : vb - va;
+          });
+          tbody.replaceChildren(...rows);
+
+          headers.forEach(h => {
+              const arrow = h.querySelector(".arrow");
+              if (!arrow) return;
+              if (h === th) {
+                  arrow.classList.add("active");
+                  arrow.textContent = asc ? "▲" : "▼";
+              } else {
+                  arrow.classList.remove("active");
+                  arrow.textContent = "▲";
+              }
+          });
+          applyGradientColors();
+      });
+  });
+</script>
+
+</body></html>
